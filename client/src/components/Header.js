@@ -9,7 +9,7 @@ const Header = ()=>{
             <Link to= "/" className= "item">Streamy</Link>
             <div className = "right menu">
                 <Link to="/" className= "item">Show Streams </Link>
-                <div><GoogleOAuth /></div>
+                <div className = "item"><GoogleOAuth /></div>
             </div>
         </div>
     )
