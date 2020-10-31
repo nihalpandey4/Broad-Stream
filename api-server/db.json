@@ -1,3 +1,14 @@
 {
-    "streams" : []
+  "streams": [
+    {
+      "title": "nihal",
+      "description": "testing request",
+      "id": 1
+    },
+    {
+      "title": "nihal",
+      "description": "testing request",
+      "id": 2
+    }
+  ]
 }
