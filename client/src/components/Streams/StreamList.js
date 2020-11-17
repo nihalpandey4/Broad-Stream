@@ -9,22 +9,22 @@ class StreamList extends React.Component{
         this.props.getAllStreams();
     }
 
-    renderOptionsWhensignedIn=(userId)=>{
-        if(this.props.userId ===userId ){
+    renderOptionsWhensignedIn=(stream)=>{
+        if(this.props.userId ===stream.userId ){
             return(
                 <div className="right floated content">
-                    <Link to="/streams/edit" className="ui button primary">Edit</Link>
-                    <Link to="/streams/delete" className="ui button negative">Delete</Link>
+                    <Link to={`/streams/edit/${stream.id}`} className="ui button primary">Edit</Link>
+                    <Link to={`/streams/delete/${stream.id}`} className="ui button negative">Delete</Link>
                 </div>
             )
         }
     }
 
     renderListItems=()=>{
-        return this.props.streams.map((stream)=>{
+        return this.props.streams.map((stream)=>{  
             return (
                 <div className="item" key={stream.id}>
-                    {this.renderOptionsWhensignedIn(stream.userId)}
+                    {this.renderOptionsWhensignedIn(stream)}
                     <i className="large middle aligned icon camera" />
                     <div className="content">
                         <div className="header">
