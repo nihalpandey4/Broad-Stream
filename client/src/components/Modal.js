@@ -16,7 +16,7 @@ const Modal = props=>{
                 </div>
                 <div className = "actions">
                     <button className="ui button red" onClick={props.onActionClicked}>{props.actionText}</button>
-                    <Link to={props.cancelUrl} className="ui button" >Cancel</Link>
+                    <Link to={props.cancelUrl} className="ui button">Cancel</Link>
                 </div>
             </div>
         </div>,
