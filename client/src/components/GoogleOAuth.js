@@ -29,7 +29,7 @@ class GoogleOAuth extends React.Component{
 
     signButton = () =>{
         if(this.props.isSignedIn===null){
-            return <div className="item">Checking...</div>
+            return <div className="">Checking...</div>
         }
         else if (this.props.isSignedIn===true){
             return (

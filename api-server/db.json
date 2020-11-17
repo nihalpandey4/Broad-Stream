@@ -9,6 +9,17 @@
       "title": "nihal",
       "description": "testing request",
       "id": 2
+    },
+    {
+      "title": "Test Stream",
+      "description": "Sample stream desc",
+      "id": 3
+    },
+    {
+      "title": "with user id",
+      "description": "I am signed in",
+      "userId": "102166353106351064573",
+      "id": 4
     }
   ]
 }

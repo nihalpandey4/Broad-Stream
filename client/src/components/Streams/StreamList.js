@@ -1,17 +1,30 @@
 import React from 'react'
 import {connect } from "react-redux";
 import {getAllStreams} from "../../actions";
- 
+import {Link} from "react-router-dom"; 
+
 class StreamList extends React.Component{
     
     componentDidMount() {
         this.props.getAllStreams();
     }
 
+    renderOptionsWhensignedIn=(userId)=>{
+        if(this.props.userId ===userId ){
+            return(
+                <div className="right floated content">
+                    <Link to="/streams/edit" className="ui button primary">Edit</Link>
+                    <Link to="/streams/delete" className="ui button negative">Delete</Link>
+                </div>
+            )
+        }
+    }
+
     renderListItems=()=>{
         return this.props.streams.map((stream)=>{
             return (
                 <div className="item" key={stream.id}>
+                    {this.renderOptionsWhensignedIn(stream.userId)}
                     <i className="large middle aligned icon camera" />
                     <div className="content">
                         <div className="header">
@@ -26,21 +39,37 @@ class StreamList extends React.Component{
         })
     }
 
+    renderCreateNewStream=()=>{
+        if(this.props.isSignedIn===true){
+            return (
+                <div style={{textAlign:"center"}}>
+                    <Link to="/streams/create" className="ui button primary">
+                        Create Stream
+                    </Link> 
+                </div>
+            )
+        }
+    }
+
     render(){
-        console.log(this.props.streams);
         return (
             <div>
-                <h2>Steams :</h2>
+                <h2>Streams :</h2>
                 <div className="ui celled list">
                     {this.renderListItems()}
                 </div>
+                {this.renderCreateNewStream()}
             </div>
         )
     }
 }
 
 const mapStateToProps =(state)=>{
-    return {streams:Object.values(state.streams)};
+    return {
+        streams:Object.values(state.streams),
+        userId:state.auth.userId,
+        isSignedIn:state.auth.isSignedIn
+    };
 }
 
 export default connect(mapStateToProps,{
