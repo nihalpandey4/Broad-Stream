@@ -65,6 +65,9 @@ If node.js is not installed or version is lower than 12, follow [this](https://n
 
 You can download the latest version of <code>git</code> [here](https://git-scm.com/downloads).
 
+3. **OBS Studio**
+You can download the OBS Studio from [here](https://obsproject.com/download).
+
 ### Installation
 
 1. Clone the repo
@@ -110,6 +113,13 @@ npm start
 After executing above commands your client side React App is running at localhost:3000. API server is running at localhost:3001. And RTMP server is running on port 8000.
 
 4. Now go to localhost:3000 using any browser to access this application. 
+
+5. For starting a stream
+
+* Create Stream by entering Title and Description
+* Now start OBS Studio. Go to Settings > Stream
+* Choose service as custom, server = rtmp://localhost/live, and stream key as shown in the application and click ok.
+* Now click on "Start Streaming" to start your stream.
 
 <hr>
 
