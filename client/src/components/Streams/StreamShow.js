@@ -11,7 +11,8 @@ class StreamShow extends React.Component {
   }
 
   componentDidMount = () => {
-    const { id } = this.props.match.params;
+    const id = parseInt(this.props.match.params.id.slice(36));
+    console.log(id);
     this.props.getStream(id);
     this.buildPlayer();
   };
@@ -28,11 +29,9 @@ class StreamShow extends React.Component {
     if (this.player || !this.props.stream) {
       return;
     }
-
-    const { id } = this.props.match.params;
     this.player = flv.createPlayer({
       type: "flv",
-      url: `http://localhost:8000/live/${id}.flv`,
+      url: `http://localhost:8000/live/${this.props.stream.id}.flv`,
     });
     this.player.attachMediaElement(this.videoRef.current);
     this.player.load();
@@ -48,14 +47,14 @@ class StreamShow extends React.Component {
       <div>
         <video ref={this.videoRef} style={{ width: "100%" }} controls />
         <div className="ui piled segment">
-            <h1>{title}</h1>
+          <h1>{title}</h1>
         </div>
         <div className="ui piled segment">
-            <h4>{description}</h4>
+          <h4>{description}</h4>
         </div>
         <div className="ui padded segment">
-          <div className="ui center aligned header" style={{ "color":"red"}}>
-            If the stream is stuck in loading, try refreshing the page then the
+          <div className="ui center aligned header" style={{ color: "red" }}>
+            If the stream is stuck in loading, try refreshing the page. If the problem still persists, then the
             stream has probably ended or not started yet.
           </div>
         </div>
@@ -65,7 +64,8 @@ class StreamShow extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { stream: state.streams[ownProps.match.params.id] };
+  const id = parseInt(ownProps.match.params.id.slice(36));
+  return { stream: state.streams[id] };
 };
 
 export default connect(mapStateToProps, { getStream })(StreamShow);

@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import {v4 as uuidv4} from "uuid";
+
 import { getAllStreams } from "../../actions";
 import { Link } from "react-router-dom";
 
@@ -16,16 +18,16 @@ class StreamList extends React.Component {
   }
 
   renderOptionsWhensignedIn = (stream) => {
-    let buttonText = `Stream ID = ${this.props.userId+stream.id}`;
+    let buttonText = `Stream ID = ${stream.id}`;
     if(this.state.onhover===true){
-        buttonText = "Click here to copy Stream ID"
+        buttonText = "Click to copy"
     }
     if (this.props.userId === stream.userId) {
       return (
         <React.Fragment>
           <button
             className="ui button"
-            onClick={()=>{navigator.clipboard.writeText(this.props.userId+stream.id)}}
+            onClick={()=>{navigator.clipboard.writeText(stream.id)}}
             onMouseEnter={() => this.setState({ onhover:true})}
             onMouseLeave={() => this.setState({ onhover:false})}>
             {buttonText}
@@ -53,7 +55,7 @@ class StreamList extends React.Component {
           <i className="large middle aligned icon camera" />
           <div className="content">
             <div className="header">
-              <Link to={`/streams/${stream.id}`}>{stream.title}</Link>
+              <Link to={`/streams/${uuidv4()+stream.id}`}>{stream.title}</Link>
             </div>
             <div className="description">{stream.description}</div>
           </div>
