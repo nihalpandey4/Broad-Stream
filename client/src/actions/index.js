@@ -18,6 +18,7 @@ export const signIn = (userId) => {
 };
 
 export const signOut = () => {
+  history.push("/")
   return {
     type: SIGN_OUT,
   };
